@@ -39,6 +39,9 @@ const Navbar = () => {
         <Heading as={RouterLink} to={"/game"}>
           Game
         </Heading>
+        <Heading as={RouterLink} to={"/dragdrop"}>
+          DragDrop
+        </Heading>
       </Flex>
     </Flex>
   );

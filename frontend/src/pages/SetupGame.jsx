@@ -31,7 +31,7 @@ const SetupGame = () => {
     <Flex w="100%" direction="column">
       <VStack>
         <Heading align="center" my="1rem">
-            Setup Game
+          Choose Characters
         </Heading>
 
         <HStack>
