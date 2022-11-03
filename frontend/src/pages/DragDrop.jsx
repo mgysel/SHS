@@ -9,22 +9,23 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Stage, Layer, Image } from 'react-konva';
+import { Stage, Layer, Image as ImageKonva } from 'react-konva';
 import { StoreContext } from "../helpers/context";
 import useImage from 'use-image';
 
 const DragDrop = () => {
   const context = useContext(StoreContext);
   const imageLink = `images/icons/animals/${context.animalImagesBlack[0]}`;
+  const imageLinkTwo = `images/icons/animals/${context.animalImagesBlack[1]}`;
   
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
   const [images, setImages] = React.useState([]);
 
-  const URLImage = ({ image }) => {
+  const CopiedImage = ({ image }) => {
     const [img] = useImage(image.src);;
     return (
-      <Image
+      <ImageKonva
         image={img}
         x={image.x}
         y={image.y}
@@ -38,16 +39,18 @@ const DragDrop = () => {
   return (
     <Flex w="100%" direction="column">
       <VStack>
-        <Image src={'images/logo/logo.png'} />
-        <Button colorScheme='teal' size='lg' as={RouterLink} to='/setup'>
-          Drag and Drop Image
-        </Button>
         <div>
-          Try to trag and image into the stage:
-          <br />
           <img
             alt="lion"
             src={imageLink}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+          <img
+            alt="lion"
+            src={imageLinkTwo}
             draggable="true"
             onDragStart={(e) => {
               dragUrl.current = e.target.src;
@@ -71,14 +74,14 @@ const DragDrop = () => {
             onDragOver={(e) => e.preventDefault()}
           >
             <Stage
-              width={window.innerWidth}
-              height={window.innerHeight}
+              width={200}
+              height={400}
               style={{ border: '1px solid grey' }}
               ref={stageRef}
             >
               <Layer>
                 {images.map((image) => {
-                  return <URLImage image={image} />;
+                  return <CopiedImage image={image} />;
                 })}
               </Layer>
             </Stage>

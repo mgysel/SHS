@@ -36,6 +36,9 @@ const Navbar = () => {
         <Heading as={RouterLink} to={"/setup"}>
           Setup
         </Heading>
+        <Heading as={RouterLink} to={"/difficulty"}>
+          Difficulty
+        </Heading>
         <Heading as={RouterLink} to={"/game"}>
           Game
         </Heading>
