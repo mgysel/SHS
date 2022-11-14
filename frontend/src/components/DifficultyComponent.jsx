@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useNavigate } from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import {
   Box,
@@ -17,10 +17,12 @@ const DifficultyComponent = (props) => {
   // Set global difficulty
   const context = useContext(StoreContext);
   let setDifficulty = context.difficulty[1]
+  console.log(props)
 
   return (
-    <VStack as='button' borderRadius='lg' bg={props.bg} padding='10px' border='3px solid black' h='200px' w='250px'
+    <VStack borderRadius='lg' bg={props.bg} padding='10px' border='3px solid black' h='200px' w='250px'
       onClick={() => setDifficulty(props.title)}
+      as={RouterLink} to='/characters'
     >
       <Heading>{props.title}</Heading>
       <Image src={props.src} />

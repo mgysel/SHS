@@ -50,7 +50,13 @@ const Difficulty = () => {
     <Center w="100%" direction="column" mt='40px'>
       <HStack>
         {difficultyImages.map((p, i) => (
-          <DifficultyComponent title={difficultyText[i]} src={difficultyImages[i]} bg={difficultyColors[i]} numQuestions={difficultyQuestions[i]} />
+          <DifficultyComponent 
+            title={difficultyText[i]} 
+            src={difficultyImages[i]} 
+            bg={difficultyColors[i]} 
+            numQuestions={difficultyQuestions[i]} 
+            key={i}
+            />
         ))}  
       </HStack>
     </Center>

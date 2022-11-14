@@ -29,21 +29,19 @@ const Navbar = () => {
         alignItems="center"
         px="1rem"
         justifyContent="right"
+        p='5px'
       >
         <Heading as={RouterLink} to={"/"}>
           Start
         </Heading>
-        <Heading as={RouterLink} to={"/setup"}>
-          Setup
-        </Heading>
         <Heading as={RouterLink} to={"/difficulty"}>
           Difficulty
         </Heading>
+        <Heading as={RouterLink} to={"/characters"}>
+          Characters
+        </Heading>
         <Heading as={RouterLink} to={"/game"}>
           Game
-        </Heading>
-        <Heading as={RouterLink} to={"/dragdrop"}>
-          DragDrop
         </Heading>
       </Flex>
     </Flex>

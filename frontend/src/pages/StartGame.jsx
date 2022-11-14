@@ -14,10 +14,10 @@ import {
 const StartGame = () => {
 
   return (
-    <Flex w="100%" direction="column">
+    <Flex w="100%" direction="column" as={RouterLink} to='/difficulty'>
       <VStack>
         <Image src={'images/logo/logo.png'} />
-        <Button colorScheme='teal' size='lg' as={RouterLink} to='/setup'>
+        <Button colorScheme='teal' size='lg'>
           Start Game
         </Button>
       </VStack>
