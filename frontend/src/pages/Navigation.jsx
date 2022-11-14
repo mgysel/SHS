@@ -6,6 +6,8 @@ import SetupGame from "./SetupGame";
 import Difficulty from "./Difficulty";
 import Game from "./Game";
 import DragDrop from "./DragDrop"
+import DragDropTwo from "./DragDropTwo"
+import DragDropThree from "./DragDropThree"
 
 const Navigation = () => {
 
@@ -24,7 +26,7 @@ const Navigation = () => {
         <Game />
       </Route>
       <Route exact path="/dragdrop">
-        <DragDrop />
+        <DragDropThree />
       </Route>
     </Switch>
   );

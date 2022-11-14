@@ -23,7 +23,7 @@ const DragDrop = () => {
   const [images, setImages] = React.useState([]);
 
   const CopiedImage = ({ image }) => {
-    const [img] = useImage(image.src);;
+    const [img] = useImage(image.src);
     return (
       <ImageKonva
         image={img}
@@ -56,6 +56,36 @@ const DragDrop = () => {
               dragUrl.current = e.target.src;
             }}
           />
+          <div
+            onDrop={(e) => {
+              e.preventDefault();
+              // register event position
+              stageRef.current.setPointersPositions(e);
+              // add image
+              setImages(
+                images.concat([
+                  {
+                    ...stageRef.current.getPointerPosition(),
+                    src: dragUrl.current,
+                  },
+                ])
+              );
+            }}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <Stage
+              width={200}
+              height={400}
+              style={{ border: '1px solid grey' }}
+              ref={stageRef}
+            >
+              <Layer>
+                {images.map((image) => {
+                  return <CopiedImage image={image} />;
+                })}
+              </Layer>
+            </Stage>
+          </div>
           <div
             onDrop={(e) => {
               e.preventDefault();
