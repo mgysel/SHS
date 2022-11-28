@@ -2,11 +2,11 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import StartGame from "./StartGame";
-import SetupGame from "./SetupGame";
 import Difficulty from "./Difficulty";
 import Game from "./Game";
 import DragDrop from "./DragDrop";
 import ReviewCards from "./ReviewCards";
+import ChooseCharacters from "./ChooseCharacters";
 
 const Navigation = () => {
 
@@ -19,7 +19,7 @@ const Navigation = () => {
         <Difficulty />
       </Route>
       <Route exact path="/characters">
-        <DragDrop />
+        <ChooseCharacters />
       </Route>
       <Route exact path="/review">
         <ReviewCards />
