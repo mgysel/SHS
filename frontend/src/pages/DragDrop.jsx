@@ -108,7 +108,6 @@ const DragDrop = () => {
 
       return (
           <div ref={drop} className={className}>
-              {title}
               {children}
           </div>
       )
@@ -132,6 +131,7 @@ const DragDrop = () => {
     <div className="container">
       <DndProvider backend={HTML5Backend}>
         <VStack>
+          <Heading pt='40px' pb='30px'>Choose characters</Heading>
           <Column title='Characters'>
             <Flex pl='10vw' pr='10vw'>
               <Carousel cols={4} rows={1} gap={0} loop showDots>

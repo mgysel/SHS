@@ -1,16 +1,29 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
   Flex,
+  Grid,
   Heading,
   IconButton,
+  Image,
   Menu,
   MenuList,
   MenuItem,
   MenuButton,
+  Text,
+  useDisclosure,
+  WrapItem,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { StoreContext } from "../helpers/context";
+import CardDrawer from './navbar/CardDrawer.jsx';
 
 import Timer from './Timer'
 
@@ -18,6 +31,19 @@ const Navbar = () => {
 
   const context = useContext(StoreContext);
   const [gameMode, setGameMode] = context.gameMode;
+  const btnRef = React.useRef()
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // Update global 
+  // const handleDifficultyClick = () => {
+  //   console.log("HANDLING CLICK")
+  //   context.cc[0]='';
+  //   context.difficulty[0]='';
+  // }
+  
+  // Styling
+  const p='10px';
 
   return (
     <Flex h="3.5rem" justifyContent="center" bg="gray.700" color="white">
@@ -31,18 +57,45 @@ const Navbar = () => {
         justifyContent="right"
         p='5px'
       >
-        <Heading as={RouterLink} to={"/"}>
+        <Text p={p} fontSize='2xl' as={RouterLink} to={"/"}>
           Start
-        </Heading>
-        <Heading as={RouterLink} to={"/difficulty"}>
+        </Text>
+        <Text p={p} fontSize='2xl' as={RouterLink} to={"/difficulty"}>
           Difficulty
-        </Heading>
-        <Heading as={RouterLink} to={"/characters"}>
+        </Text>
+        <Text p={p} fontSize='2xl' as={RouterLink} to={"/characters"}>
           Characters
-        </Heading>
-        <Heading as={RouterLink} to={"/game"}>
+        </Text>
+        <Text p={p} fontSize='2xl'  as={RouterLink} to={"/review"}>
+          Review
+        </Text>
+        <Text p={p} fontSize='2xl'  as={RouterLink} to={"/game"}>
           Game
-        </Heading>
+        </Text>
+        <Text 
+          p={p} fontSize='2xl' onClick={onOpen} key='1' m={4} ref={btnRef} 
+          _hover={{ 
+            cursor: 'pointer' 
+          }}
+        >
+          Review Cards
+        </Text>
+        <Drawer onClose={onClose} isOpen={isOpen} size='full'>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Review Criteria Cards</DrawerHeader>
+            <DrawerBody>
+              <Grid templateColumns='repeat(5, 1fr)' gap={6}>
+                {context.cards.map((image, index) => (
+                  <WrapItem key={index}>
+                    <Image src={`images/cards/${image}`} index={index} />
+                  </WrapItem>
+                ))}
+              </Grid>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Flex>
     </Flex>
   );

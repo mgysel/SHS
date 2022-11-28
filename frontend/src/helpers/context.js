@@ -13,6 +13,7 @@ function StoreProvider({ children }) {
   const [round, setRound] = React.useState(0);
   const [numCards, setNumCards] = React.useState(0);
   const [difficulty, setDifficulty] = React.useState("");
+  const [cc, setCC] = React.useState("");
 
   const store = {
     playerOne: [playerOne, setPlayerOne],
@@ -26,6 +27,7 @@ function StoreProvider({ children }) {
     numCards: [numCards, setNumCards],
 
     difficulty: [difficulty, setDifficulty],
+    cc: [cc, setCC],
     
     animalImagesWhite: [ 
         'dogWhite.png',

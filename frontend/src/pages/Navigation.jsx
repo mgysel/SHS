@@ -5,7 +5,8 @@ import StartGame from "./StartGame";
 import SetupGame from "./SetupGame";
 import Difficulty from "./Difficulty";
 import Game from "./Game";
-import DragDrop from "./DragDrop"
+import DragDrop from "./DragDrop";
+import ReviewCards from "./ReviewCards";
 
 const Navigation = () => {
 
@@ -19,6 +20,9 @@ const Navigation = () => {
       </Route>
       <Route exact path="/characters">
         <DragDrop />
+      </Route>
+      <Route exact path="/review">
+        <ReviewCards />
       </Route>
       <Route exact path="/game">
         <Game />
