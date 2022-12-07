@@ -26,6 +26,7 @@ import { FaUser } from "react-icons/fa";
 import { StoreContext } from "../helpers/context";
 import CardDrawer from './navbar/CardDrawer.jsx';
 import { useHistory, useLocation } from 'react-router-dom';
+import Countdown from 'react-countdown';
 
 import Timer from './Timer'
 
@@ -36,7 +37,7 @@ const Navbar = ({ children, ...rest }) => {
   // const [difficulty, setDifficulty] = React.useState(context.difficulty);
   let [cc, setCC] = React.useState(context.cc);
   let [difficulty, setDifficulty] = React.useState(context.difficulty);
-  const [gameMode, setGameMode] = context.gameMode;
+  let [gameMode, setGameMode] = React.useState(context.gameMode);
   
   const btnRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -50,18 +51,50 @@ const Navbar = ({ children, ...rest }) => {
     setDifficulty('');
     context.cc[0] = '';
     context.difficulty[0] = '';
+    context.cc[1]('');
+    context.difficulty[1]('');
+    context.gameMode[1](0);
     console.log(context.cc);
     console.log(context.difficulty);
     history.push("/");
   }
   // Set global CC (context or character)
 
+  // Timer
+  // Renderer callback with condition
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    // Render a countdown
+    return <Text fontSize='25px'>{minutes}:{seconds}</Text>;
+  };
+
   // Styling
   const p='10px';
 
+  // {
+  //  <Text p={p} fontSize='2xl' as={RouterLink} to={"/difficulty"}>
+  //   Difficulty
+  // </Text>
+  // <Text p={p} fontSize='2xl' as={RouterLink} to={"/characters"}>
+  // Characters
+  // </Text>
+  // <Text p={p} fontSize='2xl'  as={RouterLink} to={"/review"}>
+  //   Review
+  // </Text>
+  // <Text p={p} fontSize='2xl'  as={RouterLink} to={"/game"}>
+  //   Game
+  // </Text>
+  // }
+
   return (
     <Flex h="3.5rem" justifyContent="center" bg="gray.700" color="white">
-      <Timer />
+      {context.gameMode[0]===1 &&
+        <Flex ml='20px' mt='8px' width='200px' height='20px'>
+          <Countdown
+            date={Date.now() + 180*1000}
+            renderer={renderer}
+          />
+        </Flex>
+      }
       <Flex
         w="100%"
         maxW="1366px"
@@ -76,18 +109,6 @@ const Navbar = ({ children, ...rest }) => {
         }}>
           Start
         </Text>
-        <Text p={p} fontSize='2xl' as={RouterLink} to={"/difficulty"}>
-          Difficulty
-        </Text>
-        <Text p={p} fontSize='2xl' as={RouterLink} to={"/characters"}>
-          Characters
-        </Text>
-        <Text p={p} fontSize='2xl'  as={RouterLink} to={"/review"}>
-          Review
-        </Text>
-        <Text p={p} fontSize='2xl'  as={RouterLink} to={"/game"}>
-          Game
-        </Text>
         <Button ref={btnRef} colorScheme="teal" onClick={onOpen} >
           <Text 
             p={p} fontSize='2xl' 
@@ -99,9 +120,17 @@ const Navbar = ({ children, ...rest }) => {
           </Text>
         </Button>
         <Drawer 
-          isOpen={isOpen} onClose={onClose}  placement='right' finalFocusRef={btnRef} size='full'
+          size='full'
+          variant="alwaysOpen"
+          {...rest}
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          trapFocus={false}
+          closeOnOverlayClick={false}
+          blockScrollOnMount={false}
         >
-          <DrawerOverlay />
+          {/* <DrawerOverlay /> */}
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Review Criteria Cards</DrawerHeader>

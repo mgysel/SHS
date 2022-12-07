@@ -29,6 +29,7 @@ import GameCard from "../components/GameCard"
 const Game = () => {
   
   const context = useContext(StoreContext);
+  const [gameMode, setGameMode] = context.gameMode;
   
   // Global variables
   let score = context.score[0]
@@ -45,6 +46,11 @@ const Game = () => {
 
   // Styling
   let playerPadding = '10px'
+
+  // Set game mode to 1
+  useEffect(() => {
+    context.gameMode[1](1);
+  }, [])
 
   return (
     <Flex w="100%" direction="column">

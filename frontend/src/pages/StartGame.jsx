@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
+import { StoreContext } from "../helpers/context";
 import {
   Box,
   Button,
@@ -12,6 +13,12 @@ import {
 } from "@chakra-ui/react";
 
 const StartGame = () => {
+  const context = useContext(StoreContext);
+  
+  // Set game mode to 0
+  useEffect(() => {
+    context.gameMode[1](0);
+  }, [])
 
   return (
     <Flex w="100%" direction="column">
