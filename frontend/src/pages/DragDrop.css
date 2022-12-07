@@ -1,8 +1,4 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
+
 
 .column {
   height: 350px;

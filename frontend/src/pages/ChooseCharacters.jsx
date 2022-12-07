@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, Link as RouterLink } from "react-router-dom";
+import { useLocation, useHistory, Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
@@ -20,7 +20,8 @@ import Carousel from 'better-react-carousel';
 // 
 import { DndProvider, DragPreviewImage, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from "react-dnd-html5-backend";
-import './DragDrop.css'
+import './DragDrop.css';
+import BackButton from "../components/BackButton";
 
 const ChooseCharacters = () => {
   const context = useContext(StoreContext);
@@ -130,12 +131,24 @@ const ChooseCharacters = () => {
     )
   }
 
-  console.log("ITEMS")
-  console.log(Items)
+  //Update global 
+  let history = useHistory();
+  const handleClickBack = () => {
+    console.log("NAVBAR HANDLING CLICK");
+    context.cc[1]('');
+    context.difficulty[1]('');
+    history.push("/difficulty");
+  }
 
   return (
     <VStack className="container">
-      <Heading pt='20px' pb='10px'>Choose characters</Heading>
+      <Flex 
+        position='absolute' top='75px' left='40px'
+        onClick={handleClickBack} 
+      >
+        <BackButton />
+      </Flex>
+      <Heading pt='30px' pb='30px'>Choose characters</Heading>
       <DndProvider backend={HTML5Backend}>
         <Box
           mt='0px'

@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import {
+  Button,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -28,7 +29,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import Timer from './Timer'
 
-const Navbar = () => {
+const Navbar = ({ children, ...rest }) => {
 
   const context = useContext(StoreContext);
   // const [cc, setCC] = React.useState(context.cc);
@@ -36,8 +37,8 @@ const Navbar = () => {
   let [cc, setCC] = React.useState(context.cc);
   let [difficulty, setDifficulty] = React.useState(context.difficulty);
   const [gameMode, setGameMode] = context.gameMode;
+  
   const btnRef = React.useRef()
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let history = useHistory();
@@ -87,15 +88,19 @@ const Navbar = () => {
         <Text p={p} fontSize='2xl'  as={RouterLink} to={"/game"}>
           Game
         </Text>
-        <Text 
-          p={p} fontSize='2xl' onClick={onOpen} key='1' m={4} ref={btnRef} 
-          _hover={{ 
-            cursor: 'pointer' 
-          }}
+        <Button ref={btnRef} colorScheme="teal" onClick={onOpen} >
+          <Text 
+            p={p} fontSize='2xl' 
+            _hover={{ 
+              cursor: 'pointer' 
+            }}
+          >
+            Review Cards
+          </Text>
+        </Button>
+        <Drawer 
+          isOpen={isOpen} onClose={onClose}  placement='right' finalFocusRef={btnRef} size='full'
         >
-          Review Cards
-        </Text>
-        <Drawer onClose={onClose} isOpen={isOpen} size='full'>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />

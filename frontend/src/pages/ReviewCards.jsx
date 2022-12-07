@@ -24,11 +24,11 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { ArrowBackIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import { StoreContext } from "../helpers/context";
 
-import GameCard from "../components/GameCard"
-
+import GameCard from "../components/GameCard";
+import BackButton from "../components/BackButton";
 
 const ReviewCards = () => {
   const context = useContext(StoreContext);
@@ -47,14 +47,12 @@ const ReviewCards = () => {
 
   return (
     <Flex w="100%" direction="column">
-      <IconButton
+      <Flex 
         position='absolute' mt='20px' ml='40px'
-        width='100px' height='60px'
-        backgroundColor='teal' color='white'
-        aria-label='Search database'
-        icon={<ArrowBackIcon />}
-        onClick={handleClickBack}
-      />
+        onClick={handleClickBack} 
+      >
+        <BackButton />
+      </Flex>
       <VStack>
         <Heading align="center" my="1rem" mt='30px' mb='30px'>
             Review Criteria Cards
