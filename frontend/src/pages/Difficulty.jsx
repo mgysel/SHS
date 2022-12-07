@@ -8,6 +8,7 @@ import {
   Grid,
   Heading,
   HStack,
+  IconButton,
   Flex,
   Image,
   LinkOverlay,
@@ -22,13 +23,9 @@ const Difficulty = () => {
   const context = useContext(StoreContext);
   const characterCards = context.characters;
   const contextCards = context.cards;
-  const cc = React.useState(context.cc[0]);
-  const difficulty = React.useState(context.difficulty[0]);
+  const [cc, setCC] = React.useState(context.cc);
+  const [difficulty, setDifficulty] = React.useState(context.difficulty);
   const history = useHistory();
-
-  console.log("INSIDE DIFFICULTY")
-  console.log(cc[0])
-  console.log(difficulty[0])
 
   // Criteria or Context Cards
   let CCColors = [
@@ -74,7 +71,7 @@ const Difficulty = () => {
 
   // Fetch items on mount
   useEffect(() => {
-    console.log("OUTSIDE USE EFFECT DIFFICULTY")
+    console.log("DIFFICULTY - useEffect called")
     if (context.cc[0]!=='' && context.difficulty[0]!=='') {
       console.log('USE EFFECT history')
       console.log(context.cc[0])
@@ -85,15 +82,20 @@ const Difficulty = () => {
         history.push('/review');
       }
     } 
-  }, [context.cc, context.difficulty, history]);
+  }, [context.cc, context.difficulty, history, cc, difficulty]);
+
+  // useEffect(() => {
+  //   setCC('')
+  //   setDifficulty('')
+  // }, [])
 
   return (
     <>
       <VStack>
         <Heading pt='30px' pb='10px'>Play with Criteria or Character Cards?</Heading>
         <Grid templateColumns='repeat(2, 1fr)' gap={10}>
-          <CCSelect image={`images/characters/${contextCards[0]}`} type='Criteria' color={CCColors[1]} clickColor={CCClickColors[0]} />
-          <CCSelect image={`images/characters/${characterCards[0]}`} type='Character' color={CCColors[1]} clickColor={CCClickColors[0]}/>
+          <CCSelect image={`images/characters/${contextCards[0]}`} type='Criteria' color={CCColors[1]} clickColor={CCClickColors[0]} cc={cc} setCC={setCC}/>
+          <CCSelect image={`images/characters/${characterCards[0]}`} type='Character' color={CCColors[1]} clickColor={CCClickColors[0]} cc={cc} setCC={setCC}/>
         </Grid>
       </VStack>
       <VStack>
@@ -107,6 +109,8 @@ const Difficulty = () => {
               clickColor={difficultyClickColors[i]}
               numQuestions={difficultyQuestions[i]} 
               key={i}
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
               />
           ))}  
         </HStack>

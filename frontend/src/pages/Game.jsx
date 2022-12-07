@@ -43,38 +43,36 @@ const Game = () => {
   let animalsBlack = context.animalImagesBlack
   let cards = context.cards
 
+  // Styling
+  let playerPadding = '10px'
+
   return (
     <Flex w="100%" direction="column">
       <VStack>
         <Heading align="center" my="1rem">
             Question
         </Heading>
-        <Text>
+        <Text pb='20px'>
             Question Here
         </Text>
-        <Heading align="center" my="1rem">
-            Cards
-        </Heading>
       
         <Wrap>
-          {cards.map((image, index) => (
-            <WrapItem key={index}>
+            {cards.map((image, index) => (
               <GameCard image={image} index={index} />
-            </WrapItem>
-          ))}
+            ))}
         </Wrap>
 
-        <Center align="center">
-          <Circle size='90px' border='1px solid black'>
+        <Center align="center" pt='30px'>
+          <Circle size='90px' border='1px solid black' ml={playerPadding} mr={playerPadding}>
             <Image boxSize='60px' src={`images/icons/animals/${animalsBlack[0]}`} />
           </Circle>
-          <Circle size='90px' border='1px solid black'>
+          <Circle size='90px' border='1px solid black' ml={playerPadding} mr={playerPadding}>
             <Image boxSize='60px' src={`images/icons/animals/${animalsBlack[1]}`} />
           </Circle>
-          <Circle size='90px' bg='black' border='1px solid black'>
+          <Circle size='90px' bg='black' border='1px solid black' ml={playerPadding} mr={playerPadding}>
             <Image boxSize='60px' src={`images/icons/animals/${animalsWhite[2]}`}/>
           </Circle>
-          <Circle size='90px' bg='black' border='1px solid black'>
+          <Circle size='90px' bg='black' border='1px solid black' ml={playerPadding} mr={playerPadding}>
             <Image boxSize='60px' src={`images/icons/animals/${animalsWhite[3]}`}/>
           </Circle>
         </Center>

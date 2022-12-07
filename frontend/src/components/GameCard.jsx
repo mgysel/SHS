@@ -3,6 +3,7 @@ import {
   Box, 
   Checkbox,
   CheckboxGroup,
+  Flex,
   HStack,
   Image, 
   LinkBox, 
@@ -22,7 +23,8 @@ const GameCard = (props) => {
 
   const [checkedItems, setCheckedItems] = React.useState([false, false])
   const [completed, setCompleted] = React.useState(false)
-  const [display, setDisplay] = React.useState(false)
+  const [display, setDisplay] = React.useState('none')
+  
 
   // If both boxes checked, complete card
   useEffect(() => {
@@ -35,16 +37,16 @@ const GameCard = (props) => {
   // If card not completed and card within range, display
   useEffect(() => {
     if (completed) {
-      setDisplay(false)
+      setDisplay('none')
     } else if (props.index < numCards + 3) {
-      setDisplay(true)
+      setDisplay('flex')
     }
   }, [numCards, completed])
 
   return (
-    <>
+    <Flex display={display} pl='15px' pr='15px'>
       {
-        display && (
+        display==='flex' && (
           <VStack>
             <Image src={`images/cards/${props.image}`} />
             <HStack>
@@ -68,7 +70,7 @@ const GameCard = (props) => {
           </VStack>
         )
       }
-    </>
+    </Flex>
   );
 };
 

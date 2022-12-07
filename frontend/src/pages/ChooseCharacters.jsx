@@ -100,7 +100,6 @@ const ChooseCharacters = () => {
         <div ref={drag} style={{opacity}} pl='10px'>
           <Image 
             src={imageLink} 
-            border='1px solid black' 
             width='200px'
           />
         </div>

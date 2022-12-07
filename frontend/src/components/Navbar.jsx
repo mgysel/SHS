@@ -24,24 +24,37 @@ import { Link as RouterLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { StoreContext } from "../helpers/context";
 import CardDrawer from './navbar/CardDrawer.jsx';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Timer from './Timer'
 
 const Navbar = () => {
 
   const context = useContext(StoreContext);
+  // const [cc, setCC] = React.useState(context.cc);
+  // const [difficulty, setDifficulty] = React.useState(context.difficulty);
+  let [cc, setCC] = React.useState(context.cc);
+  let [difficulty, setDifficulty] = React.useState(context.difficulty);
   const [gameMode, setGameMode] = context.gameMode;
   const btnRef = React.useRef()
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // Update global 
-  // const handleDifficultyClick = () => {
-  //   console.log("HANDLING CLICK")
-  //   context.cc[0]='';
-  //   context.difficulty[0]='';
-  // }
-  
+  let history = useHistory();
+
+  //Update global 
+  const handleStartClick = () => {
+    console.log("NAVBAR HANDLING CLICK");
+    setCC('');
+    setDifficulty('');
+    context.cc[0] = '';
+    context.difficulty[0] = '';
+    console.log(context.cc);
+    console.log(context.difficulty);
+    history.push("/");
+  }
+  // Set global CC (context or character)
+
   // Styling
   const p='10px';
 
@@ -57,7 +70,9 @@ const Navbar = () => {
         justifyContent="right"
         p='5px'
       >
-        <Text p={p} fontSize='2xl' as={RouterLink} to={"/"}>
+        <Text p={p} fontSize='2xl' onClick={handleStartClick} _hover={{ 
+          cursor: 'pointer' 
+        }}>
           Start
         </Text>
         <Text p={p} fontSize='2xl' as={RouterLink} to={"/difficulty"}>

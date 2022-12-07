@@ -19,30 +19,32 @@ import { StoreContext } from "../../helpers/context";
 const CCSelect = (props) => {
   // Set global CC (context or character)
   const context = useContext(StoreContext);
-  let cc = context.cc[0];
-  let setCC = context.cc[1];
-  console.log(props);
+  const [cc, setCC] = React.useState(props.cc);
   const [bgColor, setBgColor] = React.useState(props.color);
   const [border, setBorder] = React.useState('3px solid black');
 
   // Update global 
   const handleClick = () => {
-    console.log("HANDLING CLICK")
+    console.log("CC HANDLING CLICK")
+    context.cc[1](props.type);
+    props.setCC(props.type);
     setCC(props.type);
+    
     setBgColor(props.clickColor);
     setBorder('7px solid black');
   }
 
   // Fetch items on mount
   useEffect(() => {
-    if (cc===props.type) {
+    console.log("CC SELECT USE EFFECT")
+    if (context.cc[0]===props.type) {
       setBgColor(props.clickColor);
       setBorder('7px solid black');
     } else {
       setBgColor(props.color);
       setBorder('3px solid black')
     }
-  }, [cc, props.type, props.color, props.clickColor]);
+  }, [context.cc, props.type, props.color, props.clickColor]);
 
   return (
     <>

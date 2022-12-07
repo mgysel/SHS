@@ -15,18 +15,19 @@ import { StoreContext } from "../../helpers/context";
 
 const DifficultyComponent = (props) => {
   // Set global difficulty
-  const context = useContext(StoreContext);
-  let [difficulty, setDifficulty] = context.difficulty;
-
+  const context = React.useContext(StoreContext);
+  const [difficulty, setDifficulty] = React.useState(props.difficulty);
   const [bgColor, setBgColor] = React.useState(props.color);
   const [border, setBorder] = React.useState('3px solid black');
 
-  // Update global 
+  // Update difficulty and border
   const handleClick = () => {
-    console.log("INSIDE DIFFICULTY COMPONENT CLICK")
+    console.log("DIFFICULTY HANDLING CLICK");
+    // Set difficulty in context and state
+    context.difficulty[1](props.title);
+    props.setDifficulty(props.title);
     setDifficulty(props.title);
-    context.difficulty[0] = props.title;
-    console.log(context.difficulty);
+
     setBgColor(props.clickColor);
     setBorder('7px solid black');
   }
