@@ -4,9 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import StartGame from "./StartGame";
 import Difficulty from "./Difficulty";
 import Game from "./Game";
-import DragDrop from "./DragDrop";
 import ReviewCards from "./ReviewCards";
 import ChooseCharacters from "./ChooseCharacters";
+import Prep1 from "./Prep1";
+import Prep2 from "./Prep2";
 
 const Navigation = () => {
 
@@ -26,6 +27,12 @@ const Navigation = () => {
       </Route>
       <Route exact path="/game">
         <Game />
+      </Route>
+      <Route exact path="/prep1">
+        <Prep1 />
+      </Route>
+      <Route exact path="/prep2">
+        <Prep2 />
       </Route>
     </Switch>
   );
