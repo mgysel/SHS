@@ -63,8 +63,12 @@ const Navbar = ({ children, ...rest }) => {
   // Timer
   // Renderer callback with condition
   const renderer = ({ hours, minutes, seconds, completed }) => {
+    // Format minutes, seconds
+    var mDisplay = minutes > 0 ? (minutes < 10 ? "" : "") + minutes + ":" : "0:";
+    var sDisplay = seconds > 0 ? (seconds < 10 ? "0" : "") + seconds : "00";
+    
     // Render a countdown
-    return <Text fontSize='25px'>{minutes}:{seconds}</Text>;
+    return <Text fontSize='25px'>Time Remaining: {mDisplay}{sDisplay}</Text>;
   };
 
   // Styling
@@ -88,7 +92,8 @@ const Navbar = ({ children, ...rest }) => {
   return (
     <Flex h="3.5rem" justifyContent="center" bg="gray.700" color="white">
       {context.gameMode[0]===1 &&
-        <Flex ml='20px' mt='8px' width='200px' height='20px'>
+        <Flex position='absolute' ml='40px' mt='8px' width='100%' height='20px' 
+        >
           <Countdown
             date={Date.now() + 180*1000}
             renderer={renderer}
@@ -101,14 +106,9 @@ const Navbar = ({ children, ...rest }) => {
         h="100%"
         alignItems="center"
         px="1rem"
-        justifyContent="right"
         p='5px'
+        ml = 'calc(100% - 230px)'
       >
-        <Text p={p} fontSize='2xl' onClick={handleStartClick} _hover={{ 
-          cursor: 'pointer' 
-        }}>
-          Start
-        </Text>
         <Button ref={btnRef} colorScheme="teal" onClick={onOpen} >
           <Text 
             p={p} fontSize='2xl' 

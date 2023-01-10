@@ -102,7 +102,7 @@ const Difficulty = () => {
         </Button>
       </Flex>
       <VStack>
-        <Heading pt='40px' pb='15px'>Choose level of difficulty</Heading>
+        <Heading pt='28px' pb='15px'>Choose level of difficulty</Heading>
         <HStack pt='40px'>
           <Grid templateColumns='repeat(2, 2fr)' gap={10}>
             {difficultyImages.map((p, i) => (

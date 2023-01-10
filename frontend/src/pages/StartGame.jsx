@@ -23,7 +23,7 @@ const StartGame = () => {
   return (
     <Flex w="100%" direction="column">
       <VStack>
-        <Image src={'images/logo/logo.png'} pt='80px' pb='40px' />
+        <Image src={'images/logo/logo.png'} pt='13vh' pb='40px' />
         <Button colorScheme='teal' size='lg' width='300px' height='80px' as={RouterLink} to='/prep1'>
           Start Game
         </Button>

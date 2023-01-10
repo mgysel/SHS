@@ -49,7 +49,7 @@ const Prep2 = () => {
   return (
     <>
       <Center>
-        <Heading align="center" my="1rem">
+        <Heading align="center" my="1rem" pt='12px'>
           Learn how to use Criteria Cards
         </Heading>
         <Flex position='absolute' top='75px' left='40px' as={RouterLink} to='/prep1'>
