@@ -15,9 +15,24 @@ import {
 const StartGame = () => {
   const context = useContext(StoreContext);
   
-  // Set game mode to 0
   useEffect(() => {
+    // Set game mode to 0
     context.gameMode[1](0);
+
+    // Choose 4 random questions to be answered
+    var questions = [];
+    var numQuestions = 0;
+    while (numQuestions < 3) {
+      const questionNumber = (Math.round(Math.random() * context.questions.length));
+      if (!questions.includes(questionNumber)) {
+        questions.push(questionNumber)
+        numQuestions += 1
+      }
+    }
+    context.questionOne[1](questions[0])
+    context.questionTwo[1](questions[1])
+    context.questionThree[1](questions[2])
+    context.questionFour[1](questions[3])
   }, [])
 
   return (

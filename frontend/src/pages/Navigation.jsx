@@ -8,6 +8,7 @@ import ReviewCards from "./ReviewCards";
 import ChooseCharacters from "./ChooseCharacters";
 import Prep1 from "./Prep1";
 import Prep2 from "./Prep2";
+import ChoosePlayers from "./ChoosePlayers";
 
 const Navigation = () => {
 
@@ -33,6 +34,9 @@ const Navigation = () => {
       </Route>
       <Route exact path="/prep2">
         <Prep2 />
+      </Route>
+      <Route exact path="/chooseplayers">
+        <ChoosePlayers />
       </Route>
     </Switch>
   );

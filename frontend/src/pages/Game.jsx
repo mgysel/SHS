@@ -29,60 +29,55 @@ import GameCard from "../components/GameCard"
 const Game = () => {
   
   const context = useContext(StoreContext);
-  const [gameMode, setGameMode] = context.gameMode;
+  const characters = context.characters;
+
+  // Question for this round
+  const questions = context.questions;
+  const question = context.questions[context.questionOne[0]]
   
   // Global variables
   let score = context.score[0]
-  let numCards = context.numCards[0]
-  let PlayerOne = context.playerOne[0]
-  let PlayerTwo = context.playerTwo[0]
-  let PlayerThree = context.playerThree[0]
-  let PlayerFour = context.playerFour[0]
+  let playerOne = context.playerOne[0]
+  let playerTwo = context.playerTwo[0]
+  let playerThree = context.playerThree[0]
+  let playerFour = context.playerFour[0]
 
   // Images
-  let animalsWhite = context.animalImagesWhite
-  let animalsBlack = context.animalImagesBlack
-  let cards = context.cards
+  let cards = context.criteria
 
   // Styling
   let playerPadding = '10px'
 
-  // Set game mode to 1
   useEffect(() => {
+    // Set game mode to 1
     context.gameMode[1](1);
   }, [])
 
   return (
     <Flex w="100%" direction="column">
-      <VStack>
-        <Heading align="center" my="1rem">
-            Question
-        </Heading>
-        <Text pb='20px'>
-            Question Here
-        </Text>
-      
-        <Wrap>
-            {cards.map((image, index) => (
-              <GameCard image={image} index={index} />
-            ))}
-        </Wrap>
-
-        <Center align="center" pt='30px'>
-          <Circle size='90px' border='1px solid black' ml={playerPadding} mr={playerPadding}>
-            <Image boxSize='60px' src={`images/icons/animals/${animalsBlack[0]}`} />
-          </Circle>
-          <Circle size='90px' border='1px solid black' ml={playerPadding} mr={playerPadding}>
-            <Image boxSize='60px' src={`images/icons/animals/${animalsBlack[1]}`} />
-          </Circle>
-          <Circle size='90px' bg='black' border='1px solid black' ml={playerPadding} mr={playerPadding}>
-            <Image boxSize='60px' src={`images/icons/animals/${animalsWhite[2]}`}/>
-          </Circle>
-          <Circle size='90px' bg='black' border='1px solid black' ml={playerPadding} mr={playerPadding}>
-            <Image boxSize='60px' src={`images/icons/animals/${animalsWhite[3]}`}/>
-          </Circle>
+      <HStack>
+        <Center align="center" width='200px' height='80vh' pt='10vh' pl='20px' >
+          <VStack mr='20px' height='110%' p='20px' pt='0px'>
+            <Text fontWeight='bold'>Speakers</Text>
+            <Image height='120px' src={`images/characters/${characters[playerOne]}`} />
+            <Image height='120px' src={`images/characters/${characters[playerTwo]}`} />
+            <Text fontWeight='bold' pt='40px'>Listeners</Text>
+            <Image height='120px' src={`images/characters/${characters[playerThree]}`} />
+            <Image height='120px' src={`images/characters/${characters[playerFour]}`} />
+          </VStack>
         </Center>
-      </VStack>
+        <VStack pl='calc((100% - 220px - 920px)/2)'>
+          <Box pr='10px' pt='40px' pb='40px'>
+            <Image src={`images/questions/${question}`} width='280px' />
+          </Box>
+        
+          <Wrap>
+              {cards.map((image, index) => (
+                <GameCard image={image} index={index} />
+              ))}
+          </Wrap>
+        </VStack>
+      </HStack>
     </Flex>
   );
 };

@@ -19,8 +19,8 @@ import ForwardButton from "../components/ForwardButton";
 
 const Prep2 = () => {
   const context = useContext(StoreContext);
-  const characters = context.characters;
   const criteriaCards = context.cards;
+  const questions = context.questions;
   
   const [hover, setHover] = React.useState(false);
   const [display, setDisplay] = React.useState('none');
@@ -55,15 +55,15 @@ const Prep2 = () => {
         <Flex position='absolute' top='75px' left='40px' as={RouterLink} to='/prep1'>
           <BackButton />
         </Flex>
-        <Flex position='absolute' top='75px' right='40px' as={RouterLink} to='/difficulty'>
+        <Flex position='absolute' top='75px' right='40px' as={RouterLink} to='/chooseplayers'>
           <ForwardButton />
         </Flex>
       </Center>
       <Center mt='20px' mb='50px'>
         <VStack>
           <HStack>
-            <Box width='180px' pr='20px'>
-              <Heading>Example Question</Heading>
+            <Box pr='10px'>
+              <Image src={`images/questions/${questions[0]}`} width='250px' />
             </Box>
             <Box width='400px' pl='20px'>
               <Text as="span">Passage of text where </Text>
