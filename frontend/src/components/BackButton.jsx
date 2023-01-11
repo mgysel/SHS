@@ -9,7 +9,7 @@ const BackButton = (props) => {
   return (
     <IconButton
       width='100px' height='60px'
-      backgroundColor='teal' color='white'
+      backgroundColor='#7CB9E8' color='black'
       aria-label='Search database'
       icon={<ArrowBackIcon />}
     />

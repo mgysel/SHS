@@ -9,6 +9,9 @@ import ChooseCharacters from "./ChooseCharacters";
 import Prep1 from "./Prep1";
 import Prep2 from "./Prep2";
 import ChoosePlayers from "./ChoosePlayers";
+import Pause from "./Pause";
+import RolePlay from "./RolePlay";
+import FinishGame from "./FinishGame";
 
 const Navigation = () => {
 
@@ -37,6 +40,15 @@ const Navigation = () => {
       </Route>
       <Route exact path="/chooseplayers">
         <ChoosePlayers />
+      </Route>
+      <Route exact path="/pause">
+        <Pause />
+      </Route>
+      <Route exact path="/roleplay">
+        <RolePlay />
+      </Route>
+      <Route exact path="/finish">
+        <FinishGame />
       </Route>
     </Switch>
   );

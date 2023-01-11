@@ -18,29 +18,16 @@ const StartGame = () => {
   useEffect(() => {
     // Set game mode to 0
     context.gameMode[1](0);
-
-    // Choose 4 random questions to be answered
-    var questions = [];
-    var numQuestions = 0;
-    while (numQuestions < 3) {
-      const questionNumber = (Math.round(Math.random() * context.questions.length));
-      if (!questions.includes(questionNumber)) {
-        questions.push(questionNumber)
-        numQuestions += 1
-      }
-    }
-    context.questionOne[1](questions[0])
-    context.questionTwo[1](questions[1])
-    context.questionThree[1](questions[2])
-    context.questionFour[1](questions[3])
   }, [])
 
   return (
     <Flex w="100%" direction="column">
       <VStack>
-        <Image src={'images/logo/logo.png'} pt='13vh' pb='40px' />
-        <Button colorScheme='teal' size='lg' width='300px' height='80px' as={RouterLink} to='/prep1'>
-          Start Game
+        <Image src={'images/logo/logo.png'} pt='60px' pb='40px' />
+        <Button backgroundColor='#7CB9E8' border='4px solid black' size='lg' width='400px' height='120px' as={RouterLink} to='/prep1'>
+          <Text fontSize='4xl'>
+            Start Game
+          </Text>
         </Button>
       </VStack>
     </Flex>

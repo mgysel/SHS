@@ -94,7 +94,7 @@ const Difficulty = () => {
       <Flex position='absolute' top='75px' right='40px' as={RouterLink} to='/game'>
         <Button
           width='160px' height='60px'
-          backgroundColor='teal' color='white'
+          backgroundColor='#7CB9E8' color='black'
           aria-label='Go to next page'
         >
           Start Game 

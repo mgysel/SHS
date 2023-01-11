@@ -34,10 +34,10 @@ const Prep1 = () => {
           <ForwardButton />
         </Flex>
       </Center>
-      <Center mt='20px' mb='50px'>
+      <Center mt='20px' mb='30px'>
         <HStack>
           <Box pr='10px'>
-            <Image src={`images/questions/${questions[0]}`} width='250px' />
+            <Image src={`images/questions/${questions[9]}`} width='250px' />
           </Box>
           <Box pl='10px'>
             <Text>How to use criteria card</Text>

@@ -27,6 +27,28 @@ import BackButton from "../components/BackButton";
 const ChooseCharacters = () => {
   const context = useContext(StoreContext);
   const characters = context.characters;
+  
+  useEffect(() => {
+    // Choose 4 random questions to be answered
+    var questions = [];
+    var numQuestions = 0;
+    while (numQuestions < 3) {
+      const questionNumber = (Math.round(Math.random() * context.questions.length));
+      if (!questions.includes(questionNumber)) {
+        questions.push(questionNumber)
+        numQuestions += 1
+      }
+    }
+    context.questionOne[1](questions[0])
+    context.questionTwo[1](questions[1])
+    context.questionThree[1](questions[2])
+    context.questionFour[1](questions[3])
+
+    // Reset all game values
+    context.round[1](1);
+    context.score[1](0);
+    context.gameMode[1](0);
+  }, [])
 
   const numTargets = 8;
   const targetsArray = [];
@@ -183,15 +205,15 @@ const ChooseCharacters = () => {
       {
         numPlayersChosen >= 3 &&
         <Flex position='absolute' top='75px' right='40px' as={RouterLink} to='/game'>
-        <Button
-          width='160px' height='60px'
-          backgroundColor='teal' color='white'
-          aria-label='Go to next page'
-        >
-          Start Game 
-          <ArrowForwardIcon pl='4px' size='xl' />
-        </Button>
-      </Flex>
+          <Button
+            width='160px' height='60px'
+            backgroundColor='#7CB9E8' color='black'
+            aria-label='Go to next page'
+          >
+            Start Game 
+            <ArrowForwardIcon pl='4px' size='xl' />
+          </Button>
+        </Flex>
       }
       <Heading pt='30px' pb='30px'>Choose Players</Heading>
       <DndProvider backend={HTML5Backend}>
@@ -199,20 +221,20 @@ const ChooseCharacters = () => {
           mt='0px'
           pt='10px'
           width='90vw'
-          height='320px'
+          height='250px'
           ml='5vw'
           borderWidth='1px' borderRadius='lg' overflow='hidden' 
-          boxShadow='1px 1px 6px rgba(0,0,0,0.5)'
+          border='1px solid gray'
         >
           <Column title='Characters' p='10px'>
-            <Flex templateColumns='repeat(8, 1fr)' gap={2} height='300px' p='10px'>
+            <Center templateColumns='repeat(8, 1fr)' gap={7} height='220px' p='10px' ml='2vw' mr='2vw'>
               {Items.map((item, i) => (
                 targets[i] === 0 && 
-                <Center width='12vw'>
+                <Center width='9vw'>
                   {item}
                 </Center>
               ))}
-            </Flex>  
+            </Center>  
           </Column>
         </Box>
         <HStack pt='20px' pb='20px'>
@@ -222,7 +244,7 @@ const ChooseCharacters = () => {
               <Center>
                 {Items.map((item, i) => (
                   targets[i] === 1 && 
-                  <Center width='10vw'>
+                  <Center width='8vw'>
                     {item}
                   </Center>
                 ))}
@@ -235,7 +257,7 @@ const ChooseCharacters = () => {
               <Center>
                 {Items.map((item, i) => (
                   targets[i] === 2 && 
-                  <Center width='10vw'>
+                  <Center width='8vw'>
                     {item}
                   </Center>
                 ))}
@@ -248,7 +270,7 @@ const ChooseCharacters = () => {
               <Center>
                 {Items.map((item, i) => (
                   targets[i] === 3 && 
-                  <Center width='10vw'>
+                  <Center width='8vw'>
                     {item}
                   </Center>
                 ))}
@@ -261,7 +283,7 @@ const ChooseCharacters = () => {
               <Center>
                 {Items.map((item, i) => (
                   targets[i] === 4 && 
-                  <Center width='10vw'>
+                  <Center width='8vw'>
                     {item}
                   </Center>
                 ))}
