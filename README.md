@@ -1,6 +1,6 @@
 # SHS Semester Project
 
-This project is a digital board game prototype developed to assist research studying the impact of role-play dialogue and mindfulness practices on a participant’s openness to experience, openness to change, and pro-sociality. The prototype is served at: https://mgysel.github.io/ 
+This project is a digital board game prototype developed to assist research studying the impact of role-play dialogue and mindfulness practices on a participant’s openness to experience, openness to change, and pro-sociality. 
 
 ## Prototype Overview
 
